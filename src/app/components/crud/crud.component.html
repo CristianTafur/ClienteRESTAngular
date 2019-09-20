@@ -1,0 +1,52 @@
+<br><br>
+<div class="row">  
+   <div class="col-12">
+        <div class="container">
+           <table class="table">
+               <thead class="thead-dark" align="center">
+                   <tr>
+                       <th>
+                          numero
+                       </th> 
+                       <th>
+                            documento
+                        </th> 
+                        <th>
+                            nombre
+                        </th>
+                        <th colspan="2">
+                            configuraciones
+                        </th>
+                   </tr> 
+               </thead>
+               <tbody  align="center">
+                   <tr>
+                       <td>{{num}}</td>
+                       <td><input class="form-control" type="number" required></td>
+                       <td><input class="form-control" type="text" required></td>
+                       <td colspan="2"><button class="btn btn-outline-success m-2 btn-block" (click)="setUser()">guardar</button></td>
+                   </tr>
+                  <tr *ngFor="let value of user.users; let i=index">
+                      <td>
+                         {{i}}
+                      </td>
+                  
+                        <td>
+                           {{value.documento}}
+                        </td>
+                  
+                            <td>
+                               {{value.nombre}}
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary m-2 btn-block" (click)="putUser()">editar</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger m-2 btn-block" (click)="deleteUser()">eliminar</button>
+                            </td>
+                 </tr>
+               </tbody>
+           </table>
+        </div>
+   </div>
+</div>
