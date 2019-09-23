@@ -10,8 +10,12 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class CRUDComponent implements OnInit {
   num:number;
-
-  constructor(private user:UsuariosService) { }
+  documento:string;
+  nombre:string;
+  constructor(private user:UsuariosService) { 
+    this.documento="documento";
+    this.nombre="nombre";
+  }
 
   ngOnInit() {
     this.getUser();
@@ -19,21 +23,45 @@ export class CRUDComponent implements OnInit {
   getUser(){
     this.user.getUsers().subscribe(res =>{
       this.user.users=res as Usuario[];
-      console.log(this.user.users);
+      this.user.users.forEach(user => {
+       user.estado=false; 
+      });
       this.num=this.user.users.length;
-      console.log(this.num); 
+      console.log(this.user.users);
+      
     });
  
   } 
-  setUser(){
-    console.log("set");
+  setUser(id:any){
+    let documento=this.obtnerDOM(this.documento+id).value;
+    let nombre=this.obtnerDOM(this.nombre+id).value;
+    this.user.user.documento=documento;
+    this.user.user.name=nombre;
+
+    this.user.setUser().subscribe(res =>{
+
+      console.log(res);
+      this.getUser();
+    });
+    console.log("set ");
     
   }
   putUser(){
     console.log("put"); 
   }
-  deleteUser(){
-    console.log("delete");
+  deleteUser(id:number){
+    this.user.user=this.user.users[id];
+    this.user.deleteUSer().subscribe(res=>{
+      this.getUser();
+    });
+    
+  }
+  obtnerDOM(id :string){
+   return (<HTMLInputElement>document.getElementById(id));
+  }
+  editar(id: number){
+   
+    this.user.users[id].estado=!this.user.users[id].estado;
     
   }
 }

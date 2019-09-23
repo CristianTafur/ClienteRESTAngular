@@ -22,9 +22,9 @@
                <tbody  align="center">
                    <tr>
                        <td>{{num}}</td>
-                       <td><input class="form-control" type="number" required></td>
-                       <td><input class="form-control" type="text" required></td>
-                       <td colspan="2"><button class="btn btn-outline-success m-2 btn-block" (click)="setUser()">guardar</button></td>
+                       <td><input id={{documento}}{{num}} class="form-control" type="number" required></td>
+                       <td><input id={{nombre}}{{num}} class="form-control" type="text" required></td>
+                       <td colspan="2"><button class="btn btn-outline-success m-2 btn-block" (click)="setUser(num)">guardar</button></td>
                    </tr>
                   <tr *ngFor="let value of user.users; let i=index">
                       <td>
@@ -32,17 +32,21 @@
                       </td>
                   
                         <td>
-                           {{value.documento}}
+                          <p *ngIf="!value.estado"> {{value.documento}}</p>
+                           <input *ngIf="value.estado" id={{documento}}{{i}} class="form-control" type="number"  value={{value.documento}} required>
                         </td>
                   
                             <td>
-                               {{value.nombre}}
+                              <p *ngIf="!value.estado"> {{value.nombre}}</p>
+                               <input *ngIf="value.estado" id={{nombre}}{{i}} class="form-control" type="text" value={{value.nombre}} required>
                             </td>
                             <td>
-                                <button class="btn btn-outline-primary m-2 btn-block" (click)="putUser()">editar</button>
+                                <button *ngIf="!value.estado" class="btn btn-outline-primary m-2 btn-block" (click)="editar(i)">editar</button>
+                                <button *ngIf="value.estado" class="btn btn-outline-success m-2 btn-block" (click)="putUser()">guardar</button>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger m-2 btn-block" (click)="deleteUser()">eliminar</button>
+                                <button *ngIf="!value.estado" class="btn btn-outline-danger m-2 btn-block" (click)="deleteUser(i)">eliminar</button>
+                                <button *ngIf="value.estado" class="btn btn-outline-danger m-2 btn-block" (click)="editar(i)">cancelar</button>
                             </td>
                  </tr>
                </tbody>

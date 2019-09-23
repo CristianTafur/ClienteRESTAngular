@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../models/Usuario';
-Usuario
+import { Usuario } from '../models/Usuario'; 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,12 +16,16 @@ export class UsuariosService {
     return this.http.get(this.url);
   }
   setUser(){
-    return this.http.post(this.url,this.user);
+    console.log(this.user);
+    
+    return this.http.get(this.url+'/insetar/'+this.user.documento+'/'+this.user.name);
   }
   putUser(){
-    return this.http.put(this.url+ `/${this.user.document}`,this.user);
+    return this.http.put(this.url+ `/${this.user.documento}`,this.user);
   }
   deleteUSer(){
-    return this.http.delete(this.url+ `/${this.user.document}`);
+    console.log(this.user.documento);
+    
+    return this.http.get(this.url+ `/eliminar/${this.user.documento}`);
   }
 }
