@@ -16,15 +16,13 @@ export class UsuariosService {
     return this.http.get(this.url);
   }
   setUser(){
-    console.log(this.user);
     
-    return this.http.get(this.url+'/insetar/'+this.user.documento+'/'+this.user.name);
+    return this.http.get(this.url+'/insetar/'+this.user.documento+'/'+this.user.nombre);
   }
   putUser(){
-    return this.http.put(this.url+ `/${this.user.documento}`,this.user);
+    return this.http.get(this.url+ `/editar/${this.user.documento}/${this.user.nombre}`);
   }
   deleteUSer(){
-    console.log(this.user.documento);
     
     return this.http.get(this.url+ `/eliminar/${this.user.documento}`);
   }

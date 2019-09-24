@@ -1,10 +1,10 @@
 export class Usuario {
     documento:string;
-    name:string;
+    nombre:string;
     estado:boolean;
     constructor(){
         this.documento="";
-        this.name="";
+        this.nombre="";
         this.estado=false;
     }
 }
