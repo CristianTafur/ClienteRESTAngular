@@ -34,6 +34,7 @@ export class CRUDComponent implements OnInit {
     let documento=this.obtnerDOM(this.documento+id).value;
     let nombre=this.obtnerDOM(this.nombre+id).value;
     if (documento.length>2) {
+      this.user.user=new Usuario();
       this.user.user.documento=documento;
       this.user.user.nombre=nombre;
       let estado=this.user.users.find(user=>user.documento == documento)==null;
